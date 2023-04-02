@@ -7,6 +7,9 @@ import { TestapiComponent } from './testapi/testapi.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CarEndpointComponent } from './car-endpoint/car-endpoint.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CarCardComponent } from './car-endpoint/car-card/car-card.component';
+import { ReportCardComponent } from './car-endpoint/report-card/report-card.component';
+import { UpdateFormComponent } from './car-endpoint/update-form/update-form.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
     TestapiComponent,
     WelcomeComponent,
     CarEndpointComponent,
+    CarCardComponent,
+    ReportCardComponent,
+    UpdateFormComponent,
   ],
   imports: [
     BrowserModule,

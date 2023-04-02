@@ -1,0 +1,9 @@
+.card {
+    margin-top: 2rem;
+}
+
+.card-header{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}

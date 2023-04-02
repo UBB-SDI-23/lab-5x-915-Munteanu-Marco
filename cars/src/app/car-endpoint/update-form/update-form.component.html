@@ -1,0 +1,21 @@
+<div class="container">
+    <form>
+        <div class="mb-3">
+            <label for="modelInput" class="form-label">Model</label>
+            <input type="text" class="form-control" id="modelInput" aria-describedby="Model">
+        </div>
+        <div class="mb-3">
+            <label for="manufacturerInput" class="form-label">Manufacturer</label>
+            <input type="text" class="form-control" id="manufacturerInput" aria-describedby="Manufacturer">
+        </div>
+        <div class="mb-3">
+            <label for="colorInput" class="form-label">Color</label>
+            <input type="text" class="form-control" id="colorInput" aria-describedby="Color">
+        </div>
+        <div class="mb-3">
+            <label for="fabYearInput" class="form-label">Fabrication Year</label>
+            <input type="number" min="1900" max="2099" step="1" class="form-control" id="fabYearInput">
+        </div>
+        <a routerLink="/carendpoint"><button type="submit" class="btn btn-success">Save</button></a>
+    </form>
+</div>

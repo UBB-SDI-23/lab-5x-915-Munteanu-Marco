@@ -1,31 +1,10 @@
 <div class="cards-container">
-    <button type="button" class="btn btn-secondary cars-btn" (click)="getCars()">Get Cars</button>
+    <button type="button" class="btn btn-secondary cars-btn" (click)="getCars()">See All Cars</button>
     <div class="container" *ngIf="showCars">
-      <div class="card" *ngFor="let car of cars$ | async">
-        <div class="card-header">
-          Id: {{car.id}}
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><strong>Manufacturer:</strong> {{car.manufacturer}}</li>
-          <li class="list-group-item">Model: {{car.model}}</li>
-          <li class="list-group-item">Fabrication Year: {{car.fabricationYear}}</li>
-          <li class="list-group-item">Color: {{car.color}}</li>
-        </ul>
-      </div>
+      <app-car-card *ngFor="let car of cars$ | async" [car]="car" (deleteCar)="onDeleteCar($event)"/>
     </div>
-    <button type="button" class="btn btn-secondary cars-btn" (click)="getReport()">Get Cars Report</button>
+    <button type="button" class="btn btn-secondary cars-btn" (click)="getReport()">See Cars Report</button>
     <div class="container" *ngIf="showReports">
-      <div class="card" *ngFor="let report of reports$ | async">
-        <div class="card-header">
-          Id: {{report.id}}
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><strong>Manufacturer:</strong> {{report.manufacturer}}</li>
-          <li class="list-group-item">Model: {{report.model}}</li>
-          <li class="list-group-item">Fabrication Year: {{report.fabricationYear}}</li>
-          <li class="list-group-item">Color: {{report.color}}</li>
-          <li class="list-group-item">Average Review Score: {{report.averageReviewScore}}</li>
-        </ul>
-      </div>
+      <app-report-card *ngFor="let report of reports$ | async" [report]="report"/>
     </div>
 </div>    
