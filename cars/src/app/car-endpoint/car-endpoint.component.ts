@@ -3,6 +3,8 @@ import { Observable, combineLatest, map } from 'rxjs';
 import { CarService } from './car.service';
 import { Car } from './models/car';
 import { CarReport } from './models/carReport';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-car-endpoint',
@@ -42,7 +44,7 @@ export class CarEndpointComponent implements OnInit {
     this.carService.deleteCar(carId).subscribe({
       next: () => {
         console.log(`Car with ID ${carId} has been deleted`);
-        location.reload();
+        this.carsToDisplay = this.carsToDisplay.filter(car => car.id !== carId);
       },
       error: (e) => console.log(e)
     });

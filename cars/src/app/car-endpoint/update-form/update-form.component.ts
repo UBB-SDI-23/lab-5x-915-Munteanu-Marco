@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-form',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class UpdateFormComponent {
 
+  constructor(private router: Router) {}
+
+  onSubmit(): void {
+    this.router.navigateByUrl("/carendpoint");
+  }
 }

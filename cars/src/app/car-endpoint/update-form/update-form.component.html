@@ -16,6 +16,6 @@
             <label for="fabYearInput" class="form-label">Fabrication Year</label>
             <input type="number" min="1900" max="2099" step="1" class="form-control" id="fabYearInput">
         </div>
-        <a routerLink="/carendpoint"><button type="submit" class="btn btn-success">Save</button></a>
+        <button type="submit" class="btn btn-success" (click)="onSubmit()">Save</button>
     </form>
 </div>
