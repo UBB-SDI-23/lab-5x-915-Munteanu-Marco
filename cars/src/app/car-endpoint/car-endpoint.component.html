@@ -1,7 +1,8 @@
 <div class="cards-container">
     <button type="button" class="btn btn-secondary cars-btn" (click)="getCars()">See All Cars</button>
     <div class="container" *ngIf="showCars">
-      <app-car-card *ngFor="let car of cars$ | async" [car]="car" (deleteCar)="onDeleteCar($event)"/>
+      <button type="button" class="btn btn-secondary" (click)="sortCars()">Sort descending by fabrication year</button>
+      <app-car-card *ngFor="let car of carsToDisplay" [car]="car" (deleteCar)="onDeleteCar($event)"/>
     </div>
     <button type="button" class="btn btn-secondary cars-btn" (click)="getReport()">See Cars Report</button>
     <div class="container" *ngIf="showReports">
