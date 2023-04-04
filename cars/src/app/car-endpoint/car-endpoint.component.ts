@@ -13,9 +13,6 @@ import { Router } from '@angular/router';
 })
 export class CarEndpointComponent implements OnInit {
   pageTitle: string = "Car Endpoint"
-  showCars: boolean = false;
-  showReports: boolean = false;
-  showDeleteCars: boolean = false;
   showSortedCars: boolean = false;
 
   cars!: Car[];
@@ -24,29 +21,20 @@ export class CarEndpointComponent implements OnInit {
   
   reports$: Observable<CarReport[]> = this.carService.reports$;
 
-  constructor(private carService: CarService) {}
+  constructor(private carService: CarService, private router: Router) {}
 
-  
-
-  getCars(): void {
-    this.showCars = !this.showCars;
-  }
-
-  getReport(): void {
-    this.showReports = !this.showReports;
-  }
-
-  deleteCarMain(): void {
-    this.showDeleteCars = !this.showDeleteCars;
-  }
 
   onDeleteCar(carId: number): void {
     this.carService.deleteCar(carId).subscribe({
       next: () => {
         console.log(`Car with ID ${carId} has been deleted`);
         this.carsToDisplay = this.carsToDisplay.filter(car => car.id !== carId);
+        window.alert(`Car with ID ${carId} has been deleted`);
       },
-      error: (e) => console.log(e)
+      error: (e) => {
+        console.log(e);
+        window.alert(`Delete failed!`);
+      }
     });
   }
 
@@ -59,11 +47,19 @@ export class CarEndpointComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  onAdd(): void {
+    this.router.navigateByUrl("/add-car");
+  }
+
+  fetchData(): void {
     this.carService.cars$.subscribe(cars => {
       this.cars = cars;
       this.carsToDisplay = cars;
       this.sortedCars = this.cars.slice().sort((a, b) => b.fabricationYear - a.fabricationYear);
     });
+  }
+
+  ngOnInit(): void {
+    this.fetchData()
   }
 }

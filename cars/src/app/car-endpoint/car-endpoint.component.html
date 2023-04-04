@@ -1,7 +1,8 @@
 <div class="cards-container">
     <h1>See All Cars</h1>
     <div class="container">
-      <button type="button" class="btn btn-secondary" (click)="sortCars()">Sort descending by fabrication year</button>
+      <button type="button" class="btn btn-dark top-btns" (click)="sortCars()">Sort by fabrication year</button>
+      <button type="button" class="btn btn-dark top-btns" (click)="onAdd()">Add new Car</button>
       <app-car-card *ngFor="let car of carsToDisplay" [car]="car" (deleteCar)="onDeleteCar($event)"/>
     </div>
     <h1>See Cars Report</h1>
