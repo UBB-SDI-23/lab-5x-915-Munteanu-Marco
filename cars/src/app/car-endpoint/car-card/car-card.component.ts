@@ -9,6 +9,11 @@ import { Car } from '../models/car';
 export class CarCardComponent {
   @Input() car!: Car;
   @Output() deleteCar = new EventEmitter<number>();
+  showDeleteConfirm: boolean = false;
+
+  toggleDelete(): void {
+    this.showDeleteConfirm = !this.showDeleteConfirm;
+  }
 
   onDelete(): void {
     this.deleteCar.emit(this.car.id);
