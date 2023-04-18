@@ -17,4 +17,5 @@
       </ul>
     </div>
   </nav>
+<app-loader *ngIf="loadingService.loading$ | async"></app-loader>
 <router-outlet></router-outlet>

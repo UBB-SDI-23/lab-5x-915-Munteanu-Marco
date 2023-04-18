@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { TestapiComponent } from './testapi/testapi.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CarEndpointComponent } from './car-endpoint/car-endpoint.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CarCardComponent } from './car-endpoint/car-card/car-card.component';
 import { ReportCardComponent } from './car-endpoint/report-card/report-card.component';
 import { UpdateCarComponent } from './car-endpoint/update-car/update-car.component';
 import { AddCarComponent } from './car-endpoint/add-car/add-car.component';
+import { LoaderComponent } from './loader/loader.component';
+import { LoadingInterceptor } from './loader/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { AddCarComponent } from './car-endpoint/add-car/add-car.component';
     ReportCardComponent,
     UpdateCarComponent,
     AddCarComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,13 @@ import { AddCarComponent } from './car-endpoint/add-car/add-car.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
