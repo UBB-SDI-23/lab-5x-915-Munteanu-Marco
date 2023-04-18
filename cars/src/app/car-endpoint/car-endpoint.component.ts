@@ -29,7 +29,7 @@ export class CarEndpointComponent implements OnInit {
       next: () => {
         console.log(`Car with ID ${carId} has been deleted`);
         this.carsToDisplay = this.carsToDisplay.filter(car => car.id !== carId);
-        window.alert(`Car with ID ${carId} has been deleted`);
+        // window.alert(`Car with ID ${carId} has been deleted`);
       },
       error: (e) => {
         console.log(e);
