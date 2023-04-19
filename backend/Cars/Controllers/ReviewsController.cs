@@ -2,10 +2,8 @@
 using Cars.Entities;
 using Cars.Models;
 using Cars.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+
 
 namespace Cars.Controllers
 {
@@ -27,9 +25,12 @@ namespace Cars.Controllers
         {
             var reviews = await _repository.GetReviewsAsync();
 
-            var filteredReviews = reviews.Where(r => r.Score > threshold).ToList();
-
-            return Ok(_mapper.Map<IEnumerable<ReviewDto>>(filteredReviews)); 
+            if (threshold != null)
+            {
+                var filteredReviews = reviews.Where(r => r.Score > threshold).ToList();
+                return Ok(_mapper.Map<IEnumerable<ReviewDto>>(filteredReviews)); 
+            }
+            return Ok(_mapper.Map<IEnumerable<ReviewDto>>(reviews));
         }
 
         [HttpGet("{reviewId}", Name = "GetReview")]

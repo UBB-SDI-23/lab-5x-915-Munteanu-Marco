@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Cars.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class initialp : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,12 +18,12 @@ namespace Cars.Migrations
                 name: "Authors",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Phone = table.Column<string>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    FirstName = table.Column<string>(type: "text", nullable: false),
+                    LastName = table.Column<string>(type: "text", nullable: false),
+                    Email = table.Column<string>(type: "text", nullable: false),
+                    Phone = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,12 +34,12 @@ namespace Cars.Migrations
                 name: "Cars",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Model = table.Column<string>(type: "TEXT", nullable: false),
-                    Manufacturer = table.Column<string>(type: "TEXT", nullable: false),
-                    Color = table.Column<string>(type: "TEXT", nullable: false),
-                    FabricationYear = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Model = table.Column<string>(type: "text", nullable: false),
+                    Manufacturer = table.Column<string>(type: "text", nullable: false),
+                    Color = table.Column<string>(type: "text", nullable: false),
+                    FabricationYear = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,11 +50,11 @@ namespace Cars.Migrations
                 name: "Races",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    City = table.Column<string>(type: "TEXT", nullable: false),
-                    Country = table.Column<string>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    City = table.Column<string>(type: "text", nullable: false),
+                    Country = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,14 +65,14 @@ namespace Cars.Migrations
                 name: "Reviews",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(type: "TEXT", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: false),
-                    Score = table.Column<int>(type: "INTEGER", nullable: false),
-                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CarId = table.Column<int>(type: "INTEGER", nullable: false),
-                    AuthorId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    Score = table.Column<int>(type: "integer", nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CarId = table.Column<int>(type: "integer", nullable: false),
+                    AuthorId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -94,8 +95,8 @@ namespace Cars.Migrations
                 name: "CarRace",
                 columns: table => new
                 {
-                    CarsId = table.Column<int>(type: "INTEGER", nullable: false),
-                    RacesId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CarsId = table.Column<int>(type: "integer", nullable: false),
+                    RacesId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -170,16 +171,16 @@ namespace Cars.Migrations
                 columns: new[] { "Id", "AuthorId", "CarId", "Date", "Description", "Score", "Title" },
                 values: new object[,]
                 {
-                    { 1, 10, 1, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "is a reliable and efficient car with a comfortable interior, making it perfect for commuting or road trips.", 10, "Very good car!" },
-                    { 2, 9, 2, new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "The Honda Civic is a reliable and affordable sedan that's perfect for city driving, but it lacks the power and excitement of its sportier competitors.", 4, "Must drive at least once in a lifetime!" },
-                    { 3, 8, 3, new DateTime(2019, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "s a classic American muscle car that delivers an impressive blend of power and handling, but its fuel economy leaves something to be desired.", 4, "Could be better!" },
-                    { 4, 7, 4, new DateTime(2023, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "luxury sedan that offers an incredible driving experience with lightning-fast acceleration and cutting-edge technology.", 4, "Decent!" },
-                    { 5, 6, 5, new DateTime(2023, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "comfortable and practical midsize sedan that's great for families, but it can be a bit bland to drive.", 4, "This is a good car!" },
-                    { 6, 1, 6, new DateTime(2022, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "is a legendary sports car that continues to impress with its exhilarating performance and stunning design.", 6, "Not that great, could be better!" },
-                    { 7, 2, 7, new DateTime(2021, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "The Chevrolet Corvette Stingray is a powerful and agile sports car that's sure to turn heads, but its interior quality can be underwhelming.", 5, "Best SUV I drove so far !" },
-                    { 8, 3, 8, new DateTime(2019, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "well-rounded luxury sedan that offers a comfortable ride, upscale features, and impressive fuel efficiency.", 4, "Shame on the manufacturer!" },
-                    { 9, 4, 9, new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "a rugged and capable off-road vehicle that's perfect for adventurous drivers, but its on-road comfort and practicality can be lacking.", 5, "Best car ever" },
-                    { 10, 5, 10, new DateTime(2021, 8, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "a versatile crossover that's perfect for outdoor enthusiasts, thanks to its all-wheel drive and generous cargo space.", 4, "Well Done Volkswagen" }
+                    { 1, 10, 1, DateTime.UtcNow, "is a reliable and efficient car with a comfortable interior, making it perfect for commuting or road trips.", 10, "Very good car!" },
+                    { 2, 9, 2, DateTime.UtcNow, "The Honda Civic is a reliable and affordable sedan that's perfect for city driving, but it lacks the power and excitement of its sportier competitors.", 4, "Must drive at least once in a lifetime!" },
+                    { 3, 8, 3, DateTime.UtcNow, "s a classic American muscle car that delivers an impressive blend of power and handling, but its fuel economy leaves something to be desired.", 4, "Could be better!" },
+                    { 4, 7, 4, DateTime.UtcNow, "luxury sedan that offers an incredible driving experience with lightning-fast acceleration and cutting-edge technology.", 4, "Decent!" },
+                    { 5, 6, 5, DateTime.UtcNow, "comfortable and practical midsize sedan that's great for families, but it can be a bit bland to drive.", 4, "This is a good car!" },
+                    { 6, 1, 6, DateTime.UtcNow, "is a legendary sports car that continues to impress with its exhilarating performance and stunning design.", 6, "Not that great, could be better!" },
+                    { 7, 2, 7, DateTime.UtcNow, "The Chevrolet Corvette Stingray is a powerful and agile sports car that's sure to turn heads, but its interior quality can be underwhelming.", 5, "Best SUV I drove so far !" },
+                    { 8, 3, 8, DateTime.UtcNow, "well-rounded luxury sedan that offers a comfortable ride, upscale features, and impressive fuel efficiency.", 4, "Shame on the manufacturer!" },
+                    { 9, 4, 9, DateTime.UtcNow, "a rugged and capable off-road vehicle that's perfect for adventurous drivers, but its on-road comfort and practicality can be lacking.", 5, "Best car ever" },
+                    { 10, 5, 10, DateTime.UtcNow, "a versatile crossover that's perfect for outdoor enthusiasts, thanks to its all-wheel drive and generous cargo space.", 4, "Well Done Volkswagen" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -28,10 +28,12 @@ builder.Services.AddCors(options =>
     });
 });
 
+
 builder.Services.AddDbContext<CarContext>(
-    options => options.UseSqlite(
+    options => options.UseNpgsql(
         builder.Configuration["ConnectionStrings:CarDBConnectionString"])
 );
+
 
 builder.Services.AddScoped<ICarRepository, CarRepository>();
 
