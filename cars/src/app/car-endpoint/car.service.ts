@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http"
+import { HttpClient, HttpErrorResponse, HttpParams } from "@angular/common/http"
 import { Observable, catchError, of, shareReplay, tap, throwError } from "rxjs";
 import { Car } from "./models/car";
 import { CarReport } from "./models/carReport";
 import { CarWithDetails } from "./models/carWithDetails";
 import { CarUpdate } from "./models/carUpdate";
 import { CarAdd } from "./models/carAdd";
+import { Page } from "./models/page";
 
 
 @Injectable({
@@ -15,9 +16,6 @@ export class CarService {
     carsUrl = "https://carsinfoapi.azurewebsites.net/api/cars/";
     reportsUrl = "https://carsinfoapi.azurewebsites.net/api/cars/stats-cars/";
 
-    cars$: Observable<Car[]> = this.http.get<Car[]>(this.carsUrl).pipe(
-        shareReplay(1)
-    );
     reports$: Observable<CarReport[]> = this.http.get<CarReport[]>(this.reportsUrl).pipe(
         shareReplay(1)
     );
@@ -31,16 +29,11 @@ export class CarService {
         );
     }
 
-    getCars(): void {
-        this.cars$ = this.http.get<Car[]>(this.carsUrl).pipe(
-            shareReplay(1)
-        );
-    }
-
     getCar(carId: number): Observable<CarWithDetails> {
         const getUrl = `${this.carsUrl}${carId}`;
         return this.http.get<CarWithDetails>(getUrl).pipe(
-            tap(data => console.log("Targeted car:", JSON.stringify(data)))
+            tap(data => console.log("Targeted car:", JSON.stringify(data))),
+            catchError(this.handleError)
         );
     }
 
@@ -63,6 +56,27 @@ export class CarService {
             })
         );
     }
+
+    getCarPage(pageNumber: number, pageSize: number = 20): Observable<Page<Car>> {
+        let params = new HttpParams()
+        .set('pageNumber', pageNumber.toString())
+        .set('pageSize', pageSize.toString());
+        return this.http.get<Page<Car>>(this.carsUrl, { params });
+    }
+
+    private handleError(err: HttpErrorResponse): Observable<never> {
+        let errorMessage: string;
+        if (err.error instanceof ErrorEvent) {
+          // A client-side or network error occurred. Handle it accordingly.
+          errorMessage = `An error occurred: ${err.error.message}`;
+        } else {
+          // The backend returned an unsuccessful response code.
+          // The response body may contain clues as to what went wrong,
+          errorMessage = `Backend returned code ${err.status}: ${err.message}`;
+        }
+        console.error(err);
+        return throwError(() => errorMessage);
+      }
 
     constructor(private http: HttpClient) {}
 }

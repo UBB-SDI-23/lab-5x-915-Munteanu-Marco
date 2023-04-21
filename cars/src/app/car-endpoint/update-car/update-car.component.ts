@@ -60,8 +60,6 @@ export class UpdateCarComponent implements OnInit {
     this.carService.updateCar(this.carId, updatedCar).subscribe(
       () => {
         console.log("Car Updated successfully");
-        this.carService.getCars();
-        // window.alert(`Car with ID ${this.carId} has been updated`);
         this.router.navigateByUrl("/carendpoint");
       },
       error => {

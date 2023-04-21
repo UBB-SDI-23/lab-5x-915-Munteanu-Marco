@@ -19,3 +19,15 @@
 .top-btns {
     margin: 1rem;
 }
+
+.pagination-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.pagination-buttons button {
+    min-width: 100px;
+}
+

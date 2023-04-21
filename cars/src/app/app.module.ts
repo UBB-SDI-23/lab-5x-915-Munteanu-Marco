@@ -14,6 +14,7 @@ import { UpdateCarComponent } from './car-endpoint/update-car/update-car.compone
 import { AddCarComponent } from './car-endpoint/add-car/add-car.component';
 import { LoaderComponent } from './loader/loader.component';
 import { LoadingInterceptor } from './loader/loading.interceptor';
+import { PaginationModule } from './pagination/pagination.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoadingInterceptor } from './loader/loading.interceptor';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    PaginationModule
   ],
   providers: [
     {
