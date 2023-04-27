@@ -14,7 +14,7 @@ export class PaginationComponent implements OnInit {
   @Output() changePage = new EventEmitter<number>();
 
   pages: number[] = [];
-
+  last_pages: number[] = [];
   ngOnInit(): void {
 
     let start = Math.floor(this.currentPage / 20) * 20;

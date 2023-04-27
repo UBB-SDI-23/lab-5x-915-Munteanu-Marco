@@ -20,6 +20,7 @@ export class CarEndpointComponent implements OnInit {
   //reports$: Observable<CarReport[]> = this.carService.reports$;
 
   currentPageNumber: number = 1;
+  noPages!: number; 
   carPage$ = this.carService.getCarPage(this.currentPageNumber);
   sortedCarPage$!: Observable<Page<Car>>;
   mainCarPage$!: Observable<Page<Car>>;
