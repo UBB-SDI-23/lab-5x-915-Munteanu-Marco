@@ -25,7 +25,7 @@ export class AddCarComponent {
       this.carService.addCar(addedCar).subscribe(
         response => {
           console.log(response);
-          this.router.navigateByUrl("/carendpoint");
+          this.router.navigateByUrl("/cars");
         },
         error => {
           console.log(error);

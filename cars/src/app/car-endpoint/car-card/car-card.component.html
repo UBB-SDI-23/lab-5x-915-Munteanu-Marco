@@ -2,6 +2,7 @@
     <div class="card-header">
       <button type="button" class="btn btn-danger" (click)="toggleDelete()">Delete</button>
       <a [routerLink]="'/update-car/' + car.id"><button type="button" class="btn btn-success">Update</button></a>
+      <a [routerLink]="'/view-car/' + car.id"><button type="button" class="btn btn-primary">View</button></a>
     </div>
     <div class="container confirm" *ngIf="showDeleteConfirm">
       <h4>Are you sure?</h4>

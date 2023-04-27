@@ -44,7 +44,7 @@ export class UpdateCarComponent implements OnInit {
       error => {
         console.log(error);
         window.alert(`Car with id ${this.carId} not found!`);
-        this.router.navigateByUrl("/carendpoint");
+        this.router.navigateByUrl("/cars");
       }
     ); 
   }
@@ -60,7 +60,7 @@ export class UpdateCarComponent implements OnInit {
     this.carService.updateCar(this.carId, updatedCar).subscribe(
       () => {
         console.log("Car Updated successfully");
-        this.router.navigateByUrl("/carendpoint");
+        this.router.navigateByUrl("/cars");
       },
       error => {
         window.alert("Update failed");

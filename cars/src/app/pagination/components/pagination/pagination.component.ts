@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { LoadingService } from 'src/app/loader/loading.service';
 
 @Component({
   selector: 'pagination',

@@ -16,12 +16,12 @@ export interface CarWithDetails {
         authorId: number
         }
     ],
-    races: [
+    races: 
         {
         id: number,
         name: string,
         city: string,
         country: string
-        }
-    ]
+        }[]
+    
 }

@@ -1,0 +1,9 @@
+<div class="cards-container">
+    <h1>See All Reviews</h1>
+    <div class="container">
+      <div *ngIf="(reviewPage$ | async) as page">
+        <app-review-card *ngFor="let review of page.content" [review]="review" (deleteReview)="onDeleteReview($event)"/>
+        <pagination [currentPage]="page.number" [limit]="page.size" [totalElements]="page.totalElements" [totalPages]="page.totalPages" (changePage)="changePage($event)"/>
+    </div>
+    </div>
+</div>    

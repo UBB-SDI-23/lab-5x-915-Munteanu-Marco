@@ -7,6 +7,8 @@ import { CarWithDetails } from "./models/carWithDetails";
 import { CarUpdate } from "./models/carUpdate";
 import { CarAdd } from "./models/carAdd";
 import { Page } from "./models/page";
+import { CarAuthorReport } from "./models/carAuthorReport";
+import { CarReviewReport } from "./models/carReviewReport";
 
 
 @Injectable({
@@ -14,11 +16,6 @@ import { Page } from "./models/page";
 })
 export class CarService {
     carsUrl = "https://carsinfoapi.azurewebsites.net/api/cars/";
-    reportsUrl = "https://carsinfoapi.azurewebsites.net/api/cars/stats-cars/";
-
-    reports$: Observable<CarReport[]> = this.http.get<CarReport[]>(this.reportsUrl).pipe(
-        shareReplay(1)
-    );
 
     deleteCar(carId: number): Observable<any> {
         return this.http.delete(this.carsUrl + carId).pipe(
@@ -62,6 +59,35 @@ export class CarService {
         .set('pageNumber', pageNumber.toString())
         .set('pageSize', pageSize.toString());
         return this.http.get<Page<Car>>(this.carsUrl, { params });
+    }
+
+    getAuthorsReportPage(pageNumber: number, pageSize: number = 20): Observable<Page<CarAuthorReport>> {
+        let params = new HttpParams()
+        .set('pageNumber', pageNumber.toString())
+        .set('pageSize', pageSize.toString());
+        return this.http.get<Page<CarAuthorReport>>(this.carsUrl + "stats-authors", { params });
+    }
+
+    getReviewsReportPage(pageNumber: number, pageSize: number = 20): Observable<Page<CarReviewReport>> {
+        let params = new HttpParams()
+        .set('pageNumber', pageNumber.toString())
+        .set('pageSize', pageSize.toString());
+        return this.http.get<Page<CarReviewReport>>(this.carsUrl + "stats-cars", { params });
+    }
+
+    addRaceToCar(carId: number, raceId: number): Observable<any> {
+        let addedRace = {
+            id: raceId
+        };
+        return this.http.post(`${this.carsUrl}${carId}/races`, addedRace);
+    }
+
+    deleteRaceFromCar(carId: number, raceId: number) {
+        const deleteUrl = `${this.carsUrl}${carId}/races/${raceId}`;
+        let params = new HttpParams()
+        .set('carId', carId.toString())
+        .set('raceId', raceId.toString())
+        return this.http.delete(deleteUrl, { params });
     }
 
     private handleError(err: HttpErrorResponse): Observable<never> {
