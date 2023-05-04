@@ -14,59 +14,7 @@
       <button type="button" class="btn btn-dark top-btns" (click)="onAdd()">Add new Car</button>
       <div *ngIf="(carPage$ | async) as page">
         <app-car-card *ngFor="let car of page.content" [car]="car" (deleteCar)="onDeleteCar($event)"/>
-        <!-- <pagination [currentPageNumber]="page.number" [limit]="page.size" [totalElements]="page.totalElements" [totalPages]="page.totalPages" (changePage)="changePage($event)"/> -->
-      
-      <nav aria-label="Page navigation example" class="custom">
-        <ul class="pagination m-3 justify-content-end custom">
-            <li [ngClass]="{ 'page-item': true, active: currentPageNumber === 1 }" class="page-item page-custom" ><a class="page-link" (click)="changePage(1)">1</a></li>
-            <li [ngClass]="{ 'page-item': true, active: currentPageNumber === 2 }" class="page-item page-custom"><a class="page-link" (click)="changePage(2)">2</a></li>
-            <li [ngClass]="{ 'page-item': true, active: currentPageNumber === 3 }" class="page-item page-custom"><a class="page-link" (click)="changePage(3)">3</a></li>
-            <li [ngClass]="{ 'page-item': true, active: currentPageNumber === 4 }" class="page-item page-custom"><a class="page-link" (click)="changePage(4)">4</a></li>
-            <li [ngClass]="{ 'page-item': true, active: currentPageNumber === 5 }" class="page-item page-custom"><a class="page-link" (click)="changePage(5)">5</a></li>
-            
-            <ul class="pagination" *ngIf="currentPageNumber <= 10">
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === 6 }" class="page-item page-custom"><a class="page-link" (click)="changePage(6)">6</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === 7 }" class="page-item page-custom"><a class="page-link" (click)="changePage(7)">7</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === 8 }" class="page-item page-custom"><a class="page-link" (click)="changePage(8)">8</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === 9 }" class="page-item page-custom"><a class="page-link" (click)="changePage(9)">9</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === 10 }" class="page-item page-custom"><a class="page-link" (click)="changePage(10)">10</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === 11 }" class="page-item page-custom"><a class="page-link" (click)="changePage(11)">11</a></li>
-            </ul>
-
-            <div class="pagination" *ngIf="currentPageNumber > 10 && currentPageNumber <= page.totalPages - 10">
-                <li  class="page-item page-custom"><a class="page-link">...</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === currentPageNumber - 5 }" class="page-item page-custom"><a class="page-link" (click)="changePage(currentPageNumber - 5)">{{currentPageNumber - 5}}</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === currentPageNumber - 4 }" class="page-item page-custom"><a class="page-link" (click)="changePage(currentPageNumber - 4)">{{currentPageNumber - 4}}</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === currentPageNumber - 3 }" class="page-item page-custom"><a class="page-link" (click)="changePage(currentPageNumber - 3)">{{currentPageNumber - 3}}</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === currentPageNumber - 2 }" class="page-item page-custom"><a class="page-link" (click)="changePage(currentPageNumber - 3)">{{currentPageNumber - 2}}</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === currentPageNumber - 1 }" class="page-item page-custom"><a class="page-link" (click)="changePage(currentPageNumber - 1)">{{currentPageNumber - 1}}</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === currentPageNumber }" class="page-item page-custom"><a class="page-link" (click)="changePage(currentPageNumber)">{{currentPageNumber}}</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === currentPageNumber + 1 }" class="page-item page-custom"><a class="page-link" (click)="changePage(currentPageNumber + 1)">{{currentPageNumber + 1}}</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === currentPageNumber + 2 }" class="page-item page-custom"><a class="page-link" (click)="changePage(currentPageNumber + 2)">{{currentPageNumber + 2}}</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === currentPageNumber + 3 }" class="page-item page-custom"><a class="page-link" (click)="changePage(currentPageNumber + 3)">{{currentPageNumber + 3}}</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === currentPageNumber + 4 }" class="page-item page-custom"><a class="page-link" (click)="changePage(currentPageNumber + 4)">{{currentPageNumber + 4}}</a></li>
-                <li [ngClass]="{ 'page-item': true, active: currentPageNumber === currentPageNumber + 5 }" class="page-item page-custom"><a class="page-link" (click)="changePage(currentPageNumber + 5)">{{currentPageNumber + 5}}</a></li>
-                <li class="page-item page-custom"><a class="page-link">...</a></li>
-            </div>
-
-            <li *ngIf="currentPageNumber <= 10 || currentPageNumber > page.totalPages - 10" class="page-item page-custom"><a class="page-link">...</a></li>
-
-            <ul class="pagination" *ngIf="currentPageNumber > page.totalPages - 10">
-                <li class="page-item page-custom"><a class="page-link" (click)="changePage(page.totalPages - 10)">{{page.totalPages - 10}}</a></li>
-                <li class="page-item page-custom"><a class="page-link" (click)="changePage(page.totalPages - 9)">{{page.totalPages - 9}}</a></li>
-                <li class="page-item page-custom"><a class="page-link" (click)="changePage(page.totalPages - 8)">{{page.totalPages - 8}}</a></li>
-                <li class="page-item page-custom"><a class="page-link" (click)="changePage(page.totalPages - 7)">{{page.totalPages - 7}}</a></li>
-                <li class="page-item page-custom"><a class="page-link" (click)="changePage(page.totalPages - 6)">{{page.totalPages - 6}}</a></li>
-                <li class="page-item page-custom"><a class="page-link" (click)="changePage(page.totalPages - 5)">{{page.totalPages - 5}}</a></li>
-            </ul>
-
-            <li class="page-item page-custom"><a class="page-link" (click)="changePage(page.totalPages - 4)">{{page.totalPages - 4}}</a></li>
-            <li class="page-item page-custom"><a class="page-link" (click)="changePage(page.totalPages - 3)">{{page.totalPages - 3}}</a></li>
-            <li class="page-item page-custom"><a class="page-link" (click)="changePage(page.totalPages - 2)">{{page.totalPages - 2}}</a></li>
-            <li class="page-item page-custom"><a class="page-link" (click)="changePage(page.totalPages - 1)">{{page.totalPages - 1}}</a></li>
-            <li class="page-item page-custom"><a class="page-link" (click)="changePage(page.totalPages)">{{page.totalPages}}</a></li>
-        </ul>
-    </nav>
+        <pagination [currentPage]="page.number" [limit]="page.size" [totalElements]="page.totalElements" [totalPages]="page.totalPages" (changePage)="changePage($event)"/>
     </div>
   </div>
 </div>    

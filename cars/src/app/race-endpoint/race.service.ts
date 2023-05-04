@@ -54,7 +54,8 @@ export class RaceService {
         );
     }
 
-    getRacePage(pageNumber: number, pageSize: number = 20): Observable<Page<Race>> {
+    getRacePage(pageNumber: number): Observable<Page<Race>> {
+      let pageSize = localStorage.getItem('elements') ?? "20";
         let params = new HttpParams()
         .set('pageNumber', pageNumber.toString())
         .set('pageSize', pageSize.toString());

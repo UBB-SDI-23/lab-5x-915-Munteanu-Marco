@@ -54,21 +54,24 @@ export class CarService {
         );
     }
 
-    getCarPage(pageNumber: number, pageSize: number = 20): Observable<Page<Car>> {
+    getCarPage(pageNumber: number): Observable<Page<Car>> {
+        let pageSize = localStorage.getItem('elements') ?? "20";
         let params = new HttpParams()
         .set('pageNumber', pageNumber.toString())
-        .set('pageSize', pageSize.toString());
+        .set('pageSize', pageSize);
         return this.http.get<Page<Car>>(this.carsUrl, { params });
     }
 
-    getAuthorsReportPage(pageNumber: number, pageSize: number = 20): Observable<Page<CarAuthorReport>> {
+    getAuthorsReportPage(pageNumber: number): Observable<Page<CarAuthorReport>> {
+        let pageSize = localStorage.getItem('elements') ?? "20";
         let params = new HttpParams()
         .set('pageNumber', pageNumber.toString())
         .set('pageSize', pageSize.toString());
         return this.http.get<Page<CarAuthorReport>>(this.carsUrl + "stats-authors", { params });
     }
 
-    getReviewsReportPage(pageNumber: number, pageSize: number = 20): Observable<Page<CarReviewReport>> {
+    getReviewsReportPage(pageNumber: number): Observable<Page<CarReviewReport>> {
+        let pageSize = localStorage.getItem('elements') ?? "20";
         let params = new HttpParams()
         .set('pageNumber', pageNumber.toString())
         .set('pageSize', pageSize.toString());

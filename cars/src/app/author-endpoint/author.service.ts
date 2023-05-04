@@ -16,7 +16,8 @@ export class AuthorService {
 
   constructor(private http: HttpClient) { }
 
-  getAuthorPage(pageNumber: number, pageSize: number = 20): Observable<any> {
+  getAuthorPage(pageNumber: number): Observable<any> {
+    let pageSize = localStorage.getItem('elements') ?? "20";
     let params = new HttpParams()
     .set('pageNumber', pageNumber.toString())
     .set('pageSize', pageSize.toString());
@@ -29,6 +30,7 @@ export class AuthorService {
   }
 
   getAuthor(authorId: number): Observable<AuthorWithDetails> {
+    
       const getUrl = `${this.authorUrl}${authorId}`;
       return this.http.get<AuthorWithDetails>(getUrl).pipe(
           tap(data => console.log("Targeted author:", JSON.stringify(data))),

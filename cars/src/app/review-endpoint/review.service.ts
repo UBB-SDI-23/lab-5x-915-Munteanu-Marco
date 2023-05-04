@@ -15,7 +15,8 @@ export class ReviewService {
 
   constructor(private http: HttpClient) {}
 
-  getReviewPage(pageNumber: number, pageSize: number = 20): Observable<Page<Review>> {
+  getReviewPage(pageNumber: number): Observable<Page<Review>> {
+    let pageSize = localStorage.getItem('elements') ?? "20";
     let params = new HttpParams()
       .set("pageNumber", pageNumber.toString())
       .set("pageSize", pageSize.toString());

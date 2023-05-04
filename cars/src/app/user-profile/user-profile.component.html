@@ -14,7 +14,11 @@
         <h3>Profile is empty please fill the info</h3>
         <button type="button" class="btn btn-primary">Fill the profile information</button>
     </div>
-
+    <div class="container">
+        <h2>Input the number of elements per page</h2>
+        <input type="number" min="1" max="20" step="1" class="form-control" id="elementsInput" name="elementsInput" [(ngModel)]="elementsPerPage" aria-describedby="elementsPerPage">
+        <button type="button" (click)="save()" class="btn btn-primary">Save</button>
+    </div>
     <div *ngIf="user$">
         <h1>Statistics</h1>
         <div *ngIf="statsLoading" class="text-center">

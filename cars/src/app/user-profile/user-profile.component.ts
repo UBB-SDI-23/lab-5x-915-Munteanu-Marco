@@ -18,6 +18,8 @@ export class UserProfileComponent implements OnInit {
   username!: string | null;
   statsLoading!: boolean;
 
+  elementsPerPage!: number;
+
   constructor (private readonly userService: UserService,
                private readonly route: ActivatedRoute) {}
 
@@ -41,6 +43,15 @@ export class UserProfileComponent implements OnInit {
       this.stats$ = this.userService.getUserProfileStats(this.id).pipe(
         finalize(() => this.statsLoading = false)
       );
+    }
+  }
+
+  save(): void {
+    if (this.elementsPerPage >= 1 && this.elementsPerPage <= 20) {
+      localStorage.setItem('elements', this.elementsPerPage.toString());
+      window.alert('Elements per page saved successfully!');
+    } else {
+      window.alert('Value should be between 1 and 20');
     }
   }
 }
