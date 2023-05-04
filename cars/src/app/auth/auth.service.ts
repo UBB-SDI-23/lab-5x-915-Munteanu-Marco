@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, tap } from 'rxjs';
 import { LoginResponse } from './models/loginResponse';
+import { RegisterRespoinse } from './models/registerResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,15 @@ export class AuthService {
     );
   }
 
+  register(username: string, password: string): Observable<RegisterRespoinse> {
+    const registerUrl = `${this.authUrl}/register`;
+    const body = {
+      username: username,
+      password: password
+    };
+    return this.http.post<RegisterRespoinse>(registerUrl, body);
+  }
+
   logout(): void {
     localStorage.removeItem('access_token');
   }
@@ -40,4 +50,10 @@ export class AuthService {
     const token = localStorage.getItem('access_token');
     return token ? !this.jwtHelper.isTokenExpired(token) : false;
   }
+
+  confirm(token: string) {
+    const confirmUrl = `${this.authUrl}/register/${token}`
+    const body = {}
+    return this.http.post(confirmUrl, body);
+  } 
 }

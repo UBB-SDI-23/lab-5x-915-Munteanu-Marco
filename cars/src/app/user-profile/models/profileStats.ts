@@ -1,6 +1,6 @@
 export interface ProfileStats {
     addedCars: number,
     addedAuthors: number,
-    adddedReviews: number,
+    addedReviews: number,
     addedRaces: number
 }

@@ -21,6 +21,8 @@ import { AddReviewAuthorComponent } from './author-endpoint/add-review-author/ad
 import { LoginComponent } from './auth/login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { ConfirmComponent } from './auth/confirm/confirm.component';
 
 const routes: Routes = [
   {path: 'testapi', component: TestapiComponent, canActivate: [AuthGuard]},
@@ -41,7 +43,9 @@ const routes: Routes = [
   {path: 'add-review', component: AddReviewComponent, canActivate: [AuthGuard]},
   {path: 'loader', component: LoaderComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'profile/:id', component: UserProfileComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'confirm', component: ConfirmComponent},
+  {path: 'profile/:id', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: '', component: WelcomeComponent},
 ];
 
