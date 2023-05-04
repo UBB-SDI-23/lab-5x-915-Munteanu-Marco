@@ -5,5 +5,6 @@ export interface Review {
     score: number,
     date: string,
     carId: number,
-    authorId: number
+    authorId: number,
+    userId: number
 }

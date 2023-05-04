@@ -4,4 +4,5 @@ export interface Car {
     manufacturer: string;
     color: string;
     fabricationYear: number;
+    userId: number;
 }

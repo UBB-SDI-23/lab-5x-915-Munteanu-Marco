@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>User Profile</h1>
+    <div class="card" *ngIf="user$ | async as user">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Username: {{ user.username }}</strong></li>
+          <li class="list-group-item">Level: {{user.level}}</li>
+          <li class="list-group-item">Marital Status: {{user.maritalStatus}}</li>
+          <li class="list-group-item">Gender: {{user.gender}}</li>
+          <li class="list-group-item">Bio: {{user.bio}}</li>
+          <li class="list-group-item">Country: {{user.country}}</li>
+        </ul>
+    </div>
+    <h1>Statistics</h1>
+    <div *ngIf="statsLoading" class="text-center">
+        <i class="fas fa-spinner fa-spin fa-5x"></i>
+    </div>
+    <div class="card" *ngIf="stats$ | async as stats">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Number of added Cars: {{ stats.addedCars }}</li>
+            <li class="list-group-item">Number of added Reviews: {{ stats.adddedReviews }}</li>
+            <li class="list-group-item">Number of added Authors: {{ stats.addedAuthors }}</li>
+            <li class="list-group-item">Number of added Races: {{ stats.addedRaces }}</li>
+        </ul>
+    </div>
+</div>

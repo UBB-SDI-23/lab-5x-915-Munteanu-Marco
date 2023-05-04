@@ -33,6 +33,9 @@ import { ReviewReportCardComponent } from './reviews-report/review-report-card/r
 import { ViewAuthorComponent } from './author-endpoint/view-author/view-author.component';
 import { ReviewNCardComponent } from './author-endpoint/review-n-card/review-n-card.component';
 import { AddReviewAuthorComponent } from './author-endpoint/add-review-author/add-review-author.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthModule } from './auth/auth.module';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -64,14 +67,15 @@ import { AddReviewAuthorComponent } from './author-endpoint/add-review-author/ad
     ReviewReportCardComponent,
     ViewAuthorComponent,
     ReviewNCardComponent,
-    AddReviewAuthorComponent
+    AddReviewAuthorComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    //PaginationModule
+    AuthModule
   ],
   providers: [
     {

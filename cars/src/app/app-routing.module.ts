@@ -18,25 +18,30 @@ import { AuthorsReportComponent } from './authors-report/authors-report.componen
 import { ReviewsReportComponent } from './reviews-report/reviews-report.component';
 import { ViewAuthorComponent } from './author-endpoint/view-author/view-author.component';
 import { AddReviewAuthorComponent } from './author-endpoint/add-review-author/add-review-author.component';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthGuard } from './auth/auth.guard';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
-  {path: 'testapi', component: TestapiComponent},
-  {path: 'update-car/:id', component: UpdateCarComponent},
-  {path: 'add-race-to-car/:id', component: AddRaceComponent},
-  {path: 'add-review/:id', component: AddReviewAuthorComponent},
-  {path: 'view-car/:id', component: ViewCarComponent},
-  {path: 'view-author/:id', component: ViewAuthorComponent},
-  {path: 'update-author/:id', component: UpdateAuthorComponent},
-  {path: 'cars', component: CarEndpointComponent},
-  {path: 'authors', component: AuthorEndpointComponent},
-  {path: 'authors-report', component: AuthorsReportComponent},
-  {path: 'reviews-report', component: ReviewsReportComponent},
-  {path: 'reviews', component: ReviewEndpointComponent},
-  {path: 'races', component: RaceEndpointComponent},
-  {path: 'add-car', component: AddCarComponent},
-  {path: 'add-author', component: AddAuthorComponent},
-  {path: 'add-review', component: AddReviewComponent},
-  {path: 'loader', component: LoaderComponent},
+  {path: 'testapi', component: TestapiComponent, canActivate: [AuthGuard]},
+  {path: 'update-car/:id', component: UpdateCarComponent, canActivate: [AuthGuard]},
+  {path: 'add-race-to-car/:id', component: AddRaceComponent, canActivate: [AuthGuard]},
+  {path: 'add-review/:id', component: AddReviewAuthorComponent, canActivate: [AuthGuard]},
+  {path: 'view-car/:id', component: ViewCarComponent, canActivate: [AuthGuard]},
+  {path: 'view-author/:id', component: ViewAuthorComponent, canActivate: [AuthGuard]},
+  {path: 'update-author/:id', component: UpdateAuthorComponent, canActivate: [AuthGuard]},
+  {path: 'cars', component: CarEndpointComponent, canActivate: [AuthGuard]},
+  {path: 'authors', component: AuthorEndpointComponent, canActivate: [AuthGuard]},
+  {path: 'authors-report', component: AuthorsReportComponent, canActivate: [AuthGuard]},
+  {path: 'reviews-report', component: ReviewsReportComponent, canActivate: [AuthGuard]},
+  {path: 'reviews', component: ReviewEndpointComponent, canActivate: [AuthGuard]},
+  {path: 'races', component: RaceEndpointComponent, canActivate: [AuthGuard]},
+  {path: 'add-car', component: AddCarComponent, canActivate: [AuthGuard]},
+  {path: 'add-author', component: AddAuthorComponent, canActivate: [AuthGuard]},
+  {path: 'add-review', component: AddReviewComponent, canActivate: [AuthGuard]},
+  {path: 'loader', component: LoaderComponent, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent},
+  {path: 'profile/:id', component: UserProfileComponent},
   {path: '', component: WelcomeComponent},
 ];
 

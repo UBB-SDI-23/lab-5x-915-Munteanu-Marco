@@ -23,14 +23,20 @@
         </li>
           <a class="nav-link" routerLink="/races">RACES</a>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/auhtors-report">AUTHORS REPORT</a>
+          <a class="nav-link" routerLink="/authors-report">AUTHORS REPORT</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/reviews-report">REVIEWS REPORT</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link" href="https://carsinfoapi.azurewebsites.net/swagger/index.html">Swagger</a>
-          </li>
+        </li> -->
+        <li *ngIf="isLoggedIn()" class="nav-item">
+          <button type="button" class="btn btn-light" (click)="logout()">Logout</button>
+        </li>
+        <li *ngIf="isLoggedIn()" class="nav-item">
+          <a class="nav-link" routerLink=""(click)="myProfile()">My Profile</a>
+        </li>
       </ul>
     </div>
   </nav>

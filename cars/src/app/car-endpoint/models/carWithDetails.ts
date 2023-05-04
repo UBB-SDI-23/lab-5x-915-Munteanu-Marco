@@ -21,7 +21,8 @@ export interface CarWithDetails {
         id: number,
         name: string,
         city: string,
-        country: string
+        country: string,
+        userId: number,
         }[]
     
 }

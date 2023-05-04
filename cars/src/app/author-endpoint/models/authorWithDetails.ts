@@ -6,5 +6,6 @@ export interface AuthorWithDetails {
     lastName: string,
     email: string,
     phone: string,
+    userId: number,
     reviews: Review[]
 }

@@ -4,4 +4,5 @@ export interface Author {
     lastName: string,
     email: string,
     phone: string,
+    userId: number
 }
